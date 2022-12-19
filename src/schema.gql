@@ -1,0 +1,161 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Actor {
+  films(actorId: Int! = 0, categoryId: Int! = 0, description: String! = "", directorId: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Film!]!
+  gender: Int!
+  id: Int!
+  name: String!
+  yearOfBirth: Int!
+}
+
+type Category {
+  films(actorId: Int! = 0, categoryId: Int! = 0, description: String! = "", directorId: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Film!]!
+  id: Int!
+  name: String!
+}
+
+input CreateActorInput {
+  gender: Int!
+  name: String!
+  yearOfBirth: Int!
+}
+
+input CreateCategoryInput {
+  name: String
+}
+
+input CreateDirectorInput {
+  gender: Int!
+  name: String
+  yearOfBirth: Int!
+}
+
+input CreateFilmInput {
+  actors: [UpdateActorInput!] = []
+  categories: [UpdateCategoryInput!] = []
+  description: String!
+  director: UpdateDirectorInput
+  name: String!
+  publishedYear: Int!
+}
+
+input CreateUserInput {
+  password: String!
+  username: String!
+}
+
+type Director {
+  films(actorId: Int! = 0, categoryId: Int! = 0, description: String! = "", directorId: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Film!]!
+  gender: Int!
+  id: Int!
+  name: String!
+  yearOfBirth: Int!
+}
+
+type Film {
+  actors(filmId: Int! = 0, gender: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Actor!]!
+  categories(filmId: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Category!]!
+  description: String!
+  directors(filmId: Int! = 0, gender: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Director!]!
+  id: Int!
+  name: String!
+  publishedYear: Int!
+}
+
+type LoginResponse {
+  accessToken: String!
+  user: User!
+}
+
+input LoginUserInput {
+  password: String!
+  username: String!
+}
+
+type Mutation {
+  createActor(createActorInput: CreateActorInput!): Actor!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createDirector(createDirectorInput: CreateDirectorInput!): Director!
+  createFilm(createFilmInput: CreateFilmInput!): Film!
+  removeActor(removeActorInputs: [RemoveActorInput!]!): Boolean!
+  removeCategory(removeCategoryInputs: [RemoveCategoryInput!]!): Boolean!
+  removeDirector(removeDirectorInput: [RemoveDirectorInput!]!): Boolean!
+  removeFilm(removeFilmInput: [RemoveFilmInput!]!): Boolean!
+  signup(createUserInput: CreateUserInput!): User!
+  updateActor(updateActorInput: UpdateActorInput!): Actor!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  updateDirector(updateDirectorInput: UpdateDirectorInput!): Director!
+  updateFilm(updateFilmInput: UpdateFilmInput!): Film!
+}
+
+type Query {
+  actor(id: Int!): Actor!
+  actors(filmId: Int! = 0, gender: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Actor!]!
+  categories(filmId: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Category!]!
+  category(id: Int!): Category!
+  director(id: Int!): Director!
+  directors(filmId: Int! = 0, gender: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Director!]!
+  film(id: Int!): Film!
+  films(actorId: Int! = 0, categoryId: Int! = 0, description: String! = "", directorId: Int! = 0, id: Int! = 0, limit: Int! = 10, name: String! = "", skip: Int! = 0): [Film!]!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  user(username: String!): User!
+  users: [User!]!
+}
+
+input RemoveActorInput {
+  films: [Int!] = []
+  id: Int!
+}
+
+input RemoveCategoryInput {
+  films: [Int!] = []
+  id: Int!
+}
+
+input RemoveDirectorInput {
+  films: [Int!] = []
+  id: Int!
+}
+
+input RemoveFilmInput {
+  actors: [Int!] = []
+  categories: [Int!] = []
+  director: Int
+  id: Int!
+}
+
+input UpdateActorInput {
+  gender: Int
+  id: Int
+  name: String
+  yearOfBirth: Int
+}
+
+input UpdateCategoryInput {
+  id: Int
+  name: String
+}
+
+input UpdateDirectorInput {
+  gender: Int
+  id: Int
+  name: String
+  yearOfBirth: Int
+}
+
+input UpdateFilmInput {
+  actors: [UpdateActorInput!] = []
+  categories: [UpdateCategoryInput!] = []
+  description: String
+  director: UpdateDirectorInput
+  id: Int!
+  name: String
+  publishedYear: Int
+}
+
+type User {
+  id: Int!
+  username: String!
+}
